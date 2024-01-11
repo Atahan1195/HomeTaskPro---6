@@ -104,6 +104,13 @@ class Order:
         order_str += f"Total: {self.calculate_total()}$"
         return order_str
 
+    def __getitem__(self, index):
+        if isinstance(index, int):
+            if 0 >= index < len(self.items):
+                return self.items[index]
+            else:
+                raise IndexError("Index out of range")
+
 
 if __name__ == "__main__":
     dishes_1 = [
@@ -135,5 +142,5 @@ if __name__ == "__main__":
     order += pizzas
     order_2 += drink
 
-    print(order)
-    print(f'\n{order_2}')
+    print(order[0:2])
+    print(f'\n{order_2[0:1]}')
